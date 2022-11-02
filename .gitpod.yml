@@ -3,8 +3,9 @@ image:
 
 tasks:
   - before: |
-      git clone https://github.com/zpthree/gitpod-dotfiles.git ~/dotfiles
-      sh ~/dotfiles/base.sh
+      rm -rf /workspace/dotfiles
+      git clone https://github.com/zpthree/gitpod-dotfiles.git /workspace/dotfiles
+      sh /workspace/dotfiles/base.sh
       npm install
       zsh
 
