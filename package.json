@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/zpthree/hartville-events-scraper#readme",
   "dependencies": {
+    "@prisma/client": "^4.6.0",
     "cheerio": "^1.0.0-rc.10",
     "chrome-aws-lambda": "^10.1.0",
     "express": "^4.18.1",
@@ -25,6 +26,7 @@
     "puppeteer": "^13.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "prisma": "^4.6.0"
   }
 }
