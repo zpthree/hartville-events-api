@@ -6,6 +6,8 @@ tasks:
       rm -rf /workspace/dotfiles
       git clone https://github.com/zpthree/gitpod-dotfiles.git /workspace/dotfiles
       sh /workspace/dotfiles/base.sh
+      cp $GITPOD_REPO_ROOT/.env.example $GITPOD_REPO_ROOT/.env
+      node /workspace/dotfiles/php/variables.js
       npm install
       zsh
   - command: npm install -g prisma
