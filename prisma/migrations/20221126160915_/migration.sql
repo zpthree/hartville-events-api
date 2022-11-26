@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Event" ALTER COLUMN "content" SET DEFAULT '',
+ALTER COLUMN "imageUri" SET DEFAULT '',
+ALTER COLUMN "pageLink" SET DEFAULT '';

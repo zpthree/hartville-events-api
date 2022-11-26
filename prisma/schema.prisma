@@ -32,10 +32,11 @@ model Event {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   title     String
-  content   String
+  pageLink  String?  @default("")
+  content   String?  @default("")
   startsAt  DateTime @default("2000-01-01T00:00:00.474Z")
   endsAt    DateTime @default("2000-01-01T00:00:00.474Z")
-  imageUri  String
+  imageUri  String?  @default("")
   location  String
   source    String // will eventually be a relation to a source
 }

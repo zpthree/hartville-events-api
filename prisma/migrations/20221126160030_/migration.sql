@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Event" ALTER COLUMN "content" DROP NOT NULL,
+ALTER COLUMN "imageUri" DROP NOT NULL;

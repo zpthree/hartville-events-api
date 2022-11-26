@@ -2,9 +2,7 @@ const chromium = require('chrome-aws-lambda');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const autoScroll = require('./lib/autoScroll');
-const { PrismaClient } = require('@prisma/client');
-const scrapes = require('./scrapes');
-const prisma = new PrismaClient();
+const scrapes = require('./scraper');
 
 
 module.exports = function(app) {

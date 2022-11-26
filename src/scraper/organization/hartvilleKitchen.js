@@ -1,11 +1,9 @@
-const chromium = require('chrome-aws-lambda');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
-const { prisma } = require('../../index');
+const prisma = require('../../client');
 
 module.exports = async function scrapeHartvilleKitchen() {
   const source = 'https://hartvillekitchen.com/events/';
-  const _events = [];
   const response = await fetch(source);
   const html = await response.text();
   const $ = cheerio.load(html);

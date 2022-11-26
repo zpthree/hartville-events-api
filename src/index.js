@@ -1,8 +1,6 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
 
 const app = express();
-exports.prisma = new PrismaClient();
 const port = 3000;
 
 require('./routes')(app);
