@@ -6,18 +6,8 @@ generator client {
 }
 
 datasource db {
-provider = "postgres"
+  provider = "postgres"
   url      = env("DATABASE_URL")
-}
-
-model Link {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  url       String
-  shortUrl  String
-  userId    String?
-  User      User?    @relation(fields: [userId], references: [id])
 }
 
 model User {
@@ -25,6 +15,41 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String?
-  email     String
-  links     Link[]
+  email     String   @unique
+}
+
+model Post {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String
+  source    String // will eventually be a relation to a source
+}
+
+model Event {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String
+  startsAt  DateTime
+  endsAt    DateTime
+  imageUri  String
+  location  String
+  source    String // will eventually be a relation to a source
+}
+
+model Source {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  company   String // will eventually be a relation to a company
+  type      Type     @default(WEBSITE)
+  uri       String
+}
+
+enum Type {
+  FACEBOOK
+  WEBSITE
 }

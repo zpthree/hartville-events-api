@@ -8,6 +8,7 @@ tasks:
       sh /workspace/dotfiles/base.sh
       npm install
       zsh
+  - command: npm install -g prisma
 
 github:
   prebuilds:
