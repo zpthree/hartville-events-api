@@ -36,26 +36,18 @@ module.exports = async function scrapeHartvilleMarketplace() {
       },
     };
 
-    const exists = await prisma.event.findMany({
+    const updated = await prisma.event.updateMany({
       where: {
         pageLink: link,
-      }
+      },
+      ...event,
     });
 
-    if (exists.length) {
-      const updated = await prisma.event.updateMany({
-        where: {
-          pageLink: link,
-        },
-        ...event,
-      });
-      console.log(updated);
-
+    if (updated.count) {
       return;
     }
 
     await prisma.event.create(event);
   })
 
-  return { message: `Events from ${source} have been added.` };
 }
