@@ -1,6 +1,8 @@
-module.exports = async function runScraper() {
+import hartvilleMarketplace from './organization/hartvilleMarketplace.js';
+
+export default async function runScraper() {
   // scrape organization websites
-  await require('./organization/hartvilleMarketplace')();
+  await hartvilleMarketplace();
   // await require('./organization/hartvilleKitchen')();
   // await require('./organization/hartvilleHardware')();
 

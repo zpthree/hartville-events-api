@@ -17,48 +17,68 @@ model User {
   name      String?
   email     String   @unique
   password  String
+  role      Role     @default(USER)
 }
 
 model Post {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  content   String
-  source    Source   @relation(fields: [sourceId], references: [id])
-  sourceId  String
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  title          String?
+  content        String
+  source         Source       @relation(fields: [sourceId], references: [id])
+  sourceId       String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
 }
 
 model Event {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  pageLink  String?  @default("")
-  content   String?  @default("")
-  startsAt  DateTime @default("2000-01-01T00:00:00.474Z")
-  endsAt    DateTime @default("2000-01-01T00:00:00.474Z")
-  imageUri  String?  @default("")
-  location  String
-  source    Source   @relation(fields: [sourceId], references: [id])
-  published Boolean  @default(false)
-  sourceId  String
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  title          String
+  pageLink       String?
+  content        String?
+  startsAt       DateTime     @default("2000-01-01T00:00:00.474Z")
+  endsAt         DateTime     @default("2000-01-01T00:00:00.474Z")
+  imageUri       String?
+  location       String
+  source         Source       @relation(fields: [sourceId], references: [id])
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  sourceId       String
+  organizationId String
+  published      Boolean      @default(false)
 }
 
 model Source {
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  type           Type
+  uri            String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+  Post           Post[]
+  Event          Event[]
+}
+
+model Organization {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  company   String // will eventually be a relation to a company
-  type      Type     @default(WEBSITE)
-  uri       String
+  name      String
+  slug      String   @unique
   post      Post[]
-  postId    Int
   event     Event[]
-  eventId   Int
+  Source    Source[]
 }
 
 enum Type {
   FACEBOOK
   WEBSITE
+}
+
+enum Role {
+  ADMIN
+  USER
 }

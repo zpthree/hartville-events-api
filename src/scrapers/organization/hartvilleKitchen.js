@@ -1,8 +1,8 @@
-const fetch = require('node-fetch');
-const cheerio = require('cheerio');
-const prisma = require('../../client');
+import fetch from 'node-fetch';
+import cheerio from 'cheerio';
+import prisma from '../../client.js';
 
-module.exports = async function scrapeHartvilleKitchen() {
+export default async function scrapeHartvilleKitchen() {
   const source = 'https://hartvillekitchen.com/events/';
   const response = await fetch(source);
   const html = await response.text();

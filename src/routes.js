@@ -1,11 +1,11 @@
-const chromium = require('chrome-aws-lambda');
-const fetch = require('node-fetch');
-const cheerio = require('cheerio');
-const autoScroll = require('./lib/autoScroll');
-const scrapes = require('./scraper');
+import chromium from 'chrome-aws-lambda';
+import fetch from 'node-fetch';
+import cheerio from 'cheerio';
+import autoScroll from './lib/autoScroll.js';
+import scrapers from './scrapers/scrapers.js';
 
 
-module.exports = function(app) {
+export default function(app) {
   app.get('/', async (req, res) => {
     // scrape facebook events
     // const facebook = async function getFacebookEvents() {
@@ -69,7 +69,7 @@ module.exports = function(app) {
 
     // Create a customer and connect to a user
 
-    const scrapesRes = await scrapes();
+    const scraperRes = await scrapers();
     res.json({ message: 'success' });
   })
 }

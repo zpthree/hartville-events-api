@@ -1,6 +1,9 @@
 image:
   file: .gitpod.dockerfile
-
+ports:
+- port: 5050
+  onOpen: ignore
+  visibility: public
 tasks:
   - before: |
       rm -rf /workspace/dotfiles

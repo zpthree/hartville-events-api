@@ -1,0 +1,66 @@
+type Query {
+  allEvents(title: String): [Event]
+}
+
+type Mutation {
+  createSource(company: String!, type: Type!, uri: String!): Source
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  role: Role
+}
+
+type Event {
+  id: ID!
+  title: String
+  pageLink: String
+  content: String
+  startsAt: String
+  endsAt: String
+  imageUri: String
+  location: String
+  source: Source
+  organization: Organization
+  published: Boolean
+}
+
+type Post {
+  id: ID!
+  title: String
+  content: String
+  source: Source
+  organization: Organization
+}
+
+type Source {
+  id: ID!
+  name: String
+  type: Type
+  uri: String
+  organization: Organization
+  Post: [Post]
+  Event: [Event]
+}
+
+type Organization {
+  id: String
+  name: String
+  slug: String
+  post: [Post]
+  event: [Event]
+  Source: [Source]
+}
+
+enum Type {
+  FACEBOOK
+  WEBSITE
+}
+
+enum Role {
+  ADMIN
+  USER
+}
